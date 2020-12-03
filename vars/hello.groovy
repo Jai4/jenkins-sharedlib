@@ -1,6 +1,6 @@
 def call(String name = 'human') {
    echo "Hello, ${name}."
-   def dockerRunOpts = "--network host -v /var/run/docker.sock:/var/run/docker.sock "
+   def dockerRunOpts = "--network host -v /var/run/docker.sock:/var/run/docker.sock --privileged"
    sh "docker pull docker"
    docker.image('docker').inside(dockerRunOpts){
     sh "docker image ls"
