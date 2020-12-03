@@ -1,10 +1,9 @@
 def call(String name = 'human') {
    echo "Hello, ${name}."
-   def dockerRunOpts = "--network host"
+   def dockerRunOpts = "--network host -v /var/run/docker.sock:/var/run/docker.sock "
    sh "docker pull ubuntu"
    docker.image('ubuntu').inside(dockerRunOpts){
-    sh "apt-get update"
-    sh "apt-get install docker-ce docker-ce-cli containerd.io"
+    
     sh "ls"
   }
 }
