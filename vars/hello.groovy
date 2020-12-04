@@ -7,7 +7,7 @@ def call(String name = 'human') {
    
     sh "pwd"
       sh "ls"
-      sh "gradle --version"
+      sh "which gradle"
   }
 }
 
