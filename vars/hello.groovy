@@ -1,9 +1,10 @@
 def call(String name = 'human') {
    echo "Hello, ${name}."
    def dockerRunOpts = "--network host"
-   sh "docker pull docker"
-   docker.image('docker').inside(dockerRunOpts){
-    sh "ls"
+   def BUILD_IMAGE = "507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
+   sh "docker pull 507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
+   docker.image(BUILD_IMAGE).inside(dockerRunOpts){
+    sh "pwd"
   }
 }
 
