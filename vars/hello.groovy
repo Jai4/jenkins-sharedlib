@@ -3,17 +3,10 @@ def call(String name = 'human') {
    echo "Present working directory of my jenkins build is: " 
    sh "pwd"
    sh "ls"
-   def dockerRunOpts = "--network host -e GRADLE_USER_HOME=./.gradle"
+   def dockerRunOpts = "--network host -e GRADLE_USER_HOME=./.gradle -v "/var/run/docker.sock:/var/run/docker.sock""
    def BUILD_IMAGE = "507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
    sh "docker pull 507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
-   
-   
-   sh "docker pull localstack/localstack"
-   def LOCAL_IMAGE = "localstack/localstack"
-   
-   docker.image(LOCAL_IMAGE).inside("--network host --entrypoint=''"){
-      sh "localstack --version"
-   }
+  
    
    docker.image(BUILD_IMAGE).withRun(dockerRunOpts){
    
