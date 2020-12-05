@@ -15,9 +15,16 @@ def call(String name = 'human') {
       sh "which gradle"
       sh "gradle --version"
       
-      sh "./gradlew clean build"
       
       sh "docker --version"
+      
+      sh "docker pull localstack/localstack"
+      sh "docker run localstack/localstack"
+      
+      sh "./gradlew clean build"
+       
+  
+      
   }
    
    echo "see whether u can see a build directory"
