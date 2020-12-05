@@ -8,6 +8,13 @@ def call(String name = 'human') {
    sh "docker pull 507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
    
    
+   sh "docker pull localstack/localstack"
+   def LOCAL_IMAGE = "localstack/localstack"
+   
+   docker.image(LOCAL_IMAGE).inside("--network host -p 8080:8080"){
+      sh "localstack --version"
+   }
+   
    docker.image(BUILD_IMAGE).withRun(dockerRunOpts){
    
       sh "pwd"
