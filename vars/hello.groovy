@@ -6,7 +6,8 @@ def call(String name = 'human') {
    def BUILD_IMAGE = "507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
    sh "docker pull 507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
    
-   docker.image(BUILD_IMAGE).inside(dockerRunOpts){
+   
+   docker.image(BUILD_IMAGE).withRun(dockerRunOpts){
    
       sh "pwd"
       sh "ls"
