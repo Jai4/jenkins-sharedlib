@@ -11,7 +11,7 @@ def call(String name = 'human') {
    sh "docker pull localstack/localstack"
    def LOCAL_IMAGE = "localstack/localstack"
    
-   docker.image(LOCAL_IMAGE).inside("--network host -p 8080:8080"){
+   docker.image(LOCAL_IMAGE).inside("--network host --entrypoint=''"){
       sh "localstack --version"
    }
    
