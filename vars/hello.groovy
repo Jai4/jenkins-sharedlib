@@ -17,16 +17,16 @@ def call(String name = 'human') {
       
       
       sh "docker --version"
-      
-      sh "docker pull localstack/localstack"
-      sh "docker run localstack/localstack"
-      
+      sh "which docker"
+     
       sh "./gradlew clean build"
        
   
       
   }
    
+  sh "docker --version"
+  sh "which docker"
    echo "see whether u can see a build directory"
    sh "ls"
 }
