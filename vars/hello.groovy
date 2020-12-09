@@ -18,8 +18,9 @@ def call(String name = 'human') {
    docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
             sh "terraform --version"
          docker.image(BUILD_IMAGE).inside(dockerRunOpts){
-            sh "compgen -u"
-            
+            sh "su root"
+            sh "apt-get update"
+            sh "su gradle"
                
             sh "which gradle"
             sh "gradle --version"
