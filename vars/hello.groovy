@@ -18,7 +18,7 @@ def call(String name = 'human') {
    docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
             sh "terraform --version"
          docker.image(BUILD_IMAGE).inside(dockerRunOpts){
-            sh "apt-get update"
+            sh "who"
             
                
             sh "which gradle"
