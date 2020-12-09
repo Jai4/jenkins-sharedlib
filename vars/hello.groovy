@@ -1,9 +1,4 @@
 def call(String name = 'human') {
-   echo "Hello, ${name}."
-   echo "Present working directory of my jenkins build is: " 
-   sh "pwd"
-   sh "ls"
-   sh "terraform --version"
    
    def dockerRunOpts = "--network host -e GRADLE_USER_HOME=./.gradle"
    def BUILD_IMAGE = "507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:latest"
@@ -16,20 +11,9 @@ def call(String name = 'human') {
   
   
    docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
-            sh "terraform --version"
          docker.image(BUILD_IMAGE).inside(dockerRunOpts){
-           
-            sh "terraform --version"
-           
-            sh "which gradle"
-            sh "gradle --version"
-
-     
-            sh "./gradlew clean build --debug"
-
+            sh "./gradlew clean build"
         }
    }
-   
-
 }
 
