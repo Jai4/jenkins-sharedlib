@@ -8,13 +8,13 @@ def call(String name = 'human') {
    def BUILD_IMAGE = "507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
    sh "docker pull 507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
    
-   //def LOCALSTACK_IMAGE = "507997576901.dkr.ecr.us-east-2.amazonaws.com/localstack:0.0.1"
-   def localStackRunOpts = "--network host"
    
+   def localStackRunOpts = "--network host"
+   def LOCALSTACK_IMAGE = "localstack/localstack"
    sh "docker pull localstack/localstack"
   
   
-   docker.image("localstack/localstack").withRun(localStackRunOpts){
+   docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
          docker.image(BUILD_IMAGE).inside(dockerRunOpts){
 
             
@@ -22,7 +22,7 @@ def call(String name = 'human') {
             sh "gradle --version"
 
 
-            sh "./gradlew clean build"
+            sh "./gradlew clean build --debug"
 
         }
    }
