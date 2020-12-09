@@ -3,31 +3,27 @@ def call(String name = 'human') {
    echo "Present working directory of my jenkins build is: " 
    sh "pwd"
    sh "ls"
-   def dockerRunOpts = "--network host -e GRADLE_USER_HOME=./.gradle -v /var/run/docker.sock:/var/run/docker.sock"
+   
+   def dockerRunOpts = "--network host -e GRADLE_USER_HOME=./.gradle"
    def BUILD_IMAGE = "507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
    sh "docker pull 507997576901.dkr.ecr.us-east-2.amazonaws.com/zulugradle:0.1"
+   
+   def LOCALSTACK_IMAGE = "localstack/localstack"
+   def localStackRunOpts = "-- network host"
   
+   docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
+         docker.image(BUILD_IMAGE).inside(dockerRunOpts){
+
+            
+            sh "which gradle"
+            sh "gradle --version"
+
+
+            sh "./gradlew clean build"
+
+        }
+   }
    
-   docker.image(BUILD_IMAGE).inside(dockerRunOpts){
-   
-      sh "pwd"
-      sh "ls"
-      sh "which gradle"
-      sh "gradle --version"
-      
-      
-      sh "docker --version"
-      sh "which docker"
-     
-      sh "./gradlew clean build"
-       
-  
-      
-  }
-   
-  sh "docker --version"
-  sh "which docker"
-   echo "see whether u can see a build directory"
-   sh "ls"
+
 }
 
