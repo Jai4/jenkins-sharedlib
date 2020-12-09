@@ -16,13 +16,14 @@ def call(String name = 'human') {
   
   
    docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
+            sh "terraform --version"
          docker.image(BUILD_IMAGE).inside(dockerRunOpts){
 
             
             sh "which gradle"
             sh "gradle --version"
 
-
+     
             sh "./gradlew clean build --debug"
 
         }
