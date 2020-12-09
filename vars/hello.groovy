@@ -14,8 +14,8 @@ def call(String name = 'human') {
    //sh "docker pull 507997576901.dkr.ecr.us-east-2.amazonaws.com/localstack:0.0.1"
   
   
-   docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
-         docker.image("localstack/localstack").inside(dockerRunOpts){
+   docker.image("localstack/localstack").withRun(localStackRunOpts){
+         docker.image(BUILD_IMAGE).inside(dockerRunOpts){
 
             
             sh "which gradle"
