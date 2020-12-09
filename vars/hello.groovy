@@ -11,7 +11,7 @@ def call(String name = 'human') {
    //def LOCALSTACK_IMAGE = "507997576901.dkr.ecr.us-east-2.amazonaws.com/localstack:0.0.1"
    def localStackRunOpts = "-- network host"
    
-   //sh "docker pull 507997576901.dkr.ecr.us-east-2.amazonaws.com/localstack:0.0.1"
+   sh "docker pull localstack/localstack"
   
   
    docker.image("localstack/localstack").withRun(localStackRunOpts){
