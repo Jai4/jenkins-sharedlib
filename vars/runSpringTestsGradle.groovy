@@ -8,13 +8,7 @@ def call(Map args = [:]) {
      stages {
          stage('Build MicroService') {
             steps {
-                        sh "echo printing ${useLocalStack}"
-                        if(useLocalStack){
-                            sh "i have entered the if condition"
-                            runGradleBuild "hello"
-                        } else {
-                            //do something else
-                        }
+                    runGradleBuild "hello"   
                  }
             }
         }
