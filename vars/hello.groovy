@@ -10,11 +10,16 @@ def call(String name = 'human') {
    def LOCALSTACK_IMAGE = "localstack/localstack"
    sh "docker pull ${LOCALSTACK_IMAGE}"
   
-  
-   docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
-         docker.image(BUILD_IMAGE).inside(dockerRunOpts){
-            sh "./gradlew clean build"
-        }
-   }
+   try{
+         docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
+               docker.image(BUILD_IMAGE).inside(dockerRunOpts){
+                  sh "./gradlew clean build"
+              }
+         }
+   } catch(Exception e){
+       sh "echo error occured"
+   } finally{
+      sh "docker network rm united"   
+   }     
 }
 
