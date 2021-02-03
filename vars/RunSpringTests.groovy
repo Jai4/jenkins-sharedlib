@@ -10,7 +10,7 @@ def call(Map args = [:]) {
             steps {
                  script {
                         if(useLocalStack){
-                            RunTests 
+                            runTests 
                         } else {
                             //do something else
                         }
