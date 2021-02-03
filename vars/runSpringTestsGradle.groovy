@@ -1,5 +1,6 @@
 def call(Map args = [:]) {
     def useLocalStack  = args.useLocalStack == null ? false : args.useLocalStack
+    sh "echo printing ${useLocalStack}"
 
     pipeline {
     agent {
