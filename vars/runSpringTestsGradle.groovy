@@ -1,6 +1,6 @@
 def call(Map args = [:]) {
     def useLocalStack  = args.useLocalStack == null ? false : args.useLocalStack
-    sh "echo printing ${useLocalStack}"
+    
 
     pipeline {
     agent {
@@ -10,6 +10,7 @@ def call(Map args = [:]) {
          stage('Build MicroService') {
             steps {
                  script {
+                        sh "echo printing ${useLocalStack}"
                         if(useLocalStack){
                             runGradleBuild 
                         } else {
