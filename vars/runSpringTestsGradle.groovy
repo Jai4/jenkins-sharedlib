@@ -9,7 +9,9 @@ def call(Map args = [:]) {
          stage('Build MicroService') {
             steps {
                    script{
-                    runGradleBuild "hello" 
+                       if(useLocalStack){
+                           runGradleBuild "hello" 
+                       }
                    }  
                  }
             }
