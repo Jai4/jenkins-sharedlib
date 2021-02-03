@@ -1,4 +1,4 @@
-def call() {
+def call(Map params = [:]) {
   
    // create custom bridge network
    sh "docker network create --driver bridge united"
