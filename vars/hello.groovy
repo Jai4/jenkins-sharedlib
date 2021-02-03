@@ -14,7 +14,7 @@ def call(String name = 'human') {
    try{
          docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
                docker.image(BUILD_IMAGE).inside(dockerRunOpts){
-                  sh "./gradlew clean build"
+                  sh "./gradlew clean build --debug"
               }
          }
    } catch(Exception e){
