@@ -8,7 +8,9 @@ def call(Map args = [:]) {
      stages {
          stage('Build MicroService') {
             steps {
-                    runGradleBuild "hello"   
+                   script{
+                    runGradleBuild "hello" 
+                   }  
                  }
             }
         }
