@@ -8,7 +8,6 @@ def call(Map args = [:]) {
      stages {
          stage('Build MicroService') {
             steps {
-                 script {
                         sh "echo printing ${useLocalStack}"
                         if(useLocalStack){
                             sh "i have entered the if condition"
@@ -20,5 +19,4 @@ def call(Map args = [:]) {
             }
         }
      }
-  }
 }
