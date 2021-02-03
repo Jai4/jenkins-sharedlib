@@ -12,9 +12,8 @@ def call(String name = 'human') {
   
   
    docker.image(LOCALSTACK_IMAGE).withRun(localStackRunOpts){
-      sleep 15
          docker.image(BUILD_IMAGE).inside(dockerRunOpts){
-            sh "curl http://ls:4566/health"
+            sh "./gradlew clean build"
         }
    }
 }
