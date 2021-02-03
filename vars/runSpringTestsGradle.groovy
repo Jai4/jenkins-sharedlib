@@ -1,7 +1,6 @@
 def call(Map args = [:]) {
     def useLocalStack  = args.useLocalStack == null ? false : args.useLocalStack
     
-
     pipeline {
     agent {
         label 'mainmachine'
@@ -12,7 +11,8 @@ def call(Map args = [:]) {
                  script {
                         sh "echo printing ${useLocalStack}"
                         if(useLocalStack){
-                            runGradleBuild 
+                            sh "i have entered the if condition"
+                            runGradleBuild "hello"
                         } else {
                             //do something else
                         }
